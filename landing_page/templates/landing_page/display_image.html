@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <br>
+            <h2>{{ image.title }}</h2>
+            <img width="400px" class="img-responisive" src="{{ image.post_image.url }}" alt="images">
+            <h4>{{ image.description }}</h4>
+        </div>
+    </div>
+</div>
+{% endblock content %}

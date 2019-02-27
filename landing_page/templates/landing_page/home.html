@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <ul class="nav nav-tabs ">
+        <li class="nav-items">
+            <a class="nav-link active" href="/">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+        </li>
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+        </li>
+        {% if user.is_superuser %}
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'super_user' %}">Blog</a>
+        </li>
+                <li class="nav-items">
+            <a class="nav-link" href="#">Admin</a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'sign_up' %}">Sign up</a>
+        </li>
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+        </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'profile'  user.id%}">My Profile</a>
+        </li>
+        {% endif %}
+    </ul>
+    <br>
+</div>
+
+<!-- show stuff about active user.. -->
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            <div class="alert alert-success alert-md" role="alert">
+                <h3><span class="text-success">Welcome, you are logeed in as {{user.username|capfirst}}</span></h3>
+                {% if user.is_superuser %}
+                <p><a href="{% url 'super_user' %}">Super user page.</a></p>
+                {% endif %}
+                <p>This part is still in development stages, check out our gallery.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+
+
+<!-- this part  shows bg and login button -->
+<div id="home">
+    <div class="landing-text">
+
+        <h1 class="white-text text-capitalize">Masoud</h1>
+        <p>Welcome to my website,I wonder how i can help?</p>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li class="list-inline-item">⋅</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">⋅</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">⋅</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">© Your Website 2018. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+</footer> -->
+{% endblock content %}

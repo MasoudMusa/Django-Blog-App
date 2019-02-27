@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Your profile.
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <ul class="nav nav-tabs ">
+        <li class="nav-items">
+            <a class="nav-link active" href="/">Home</a>
+        </li>
+    </ul>
+</div> <!-- Navigation bar -->
+
+<div class="container">
+    <div class="row">
+        <img style="width: 300px" src="{{ my_profile.profile_pic.url }}" alt="Profile Pic" class="rounded-circle">
+<h3>{{my_profile.user}}</h3>
+<p>{{my_profile.bio}}</p>
+    </div>
+</div> <!-- Alert! -->
+
+{% endblock content %}
+

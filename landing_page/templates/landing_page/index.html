@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Index Page{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li class="nav-items">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+        </li>
+        {% else %}
+        <li class="nav-items">
+            <a class="nav-link" href="#">Sign up</a>
+        </li>
+        <li class="nav-items">
+            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+        </li>
+        <li class="nav-items">
+            <a class="nav-link" href="#">About</a>
+        </li>
+        {% endif %}
+    </ul>
+    <br>
+</div>
+
+<div class="container well">
+{% if user.is_authenticated %}
+<h2>You are logged in as {{user.username|capfirst}}</h2>
+{% if user.is_superuser %}
+<p><strong>You are a super user!</strong></p>
+{% endif %}
+<a href="{% url 'logout' %}">logout?</a>
+{% else %}
+<h2>You have logged out</h2>
+{% endif %}
+</div>
+{% endblock content %}
+
+
+{% comment %} These codes work {% endcomment %}

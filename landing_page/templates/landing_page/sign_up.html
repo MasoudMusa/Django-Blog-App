@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+
+<div class="login-card">
+    <div class="container">
+        <br>
+        <div class="row">
+            <h1>Sign Up:</h1>
+            <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="form-group">
+                    <form action="{% url 'sign_up' %}" method="POST">
+                        <p><label for="id_username">Username:</label>
+                            <input class="form-control" type="text" name="username" required id="id_username"></p>
+                        <p><label for="id_first_name">First name:</label>
+                            <input class="form-control" type="text" name="first_name" maxlength="30" id="id_first_name"></p>
+                        <p><label for="id_email">Email address:</label>
+                            <input class="form-control" type="email" name="email" maxlength="254" id="id_email"></p>
+                        <p><label for="id_password">Password:</label>
+                            <input class="form-control" type="password" name="password" required="" id="id_password"></p>
+                        <p><label for="id_password2">Repeat password:</label>
+                            <input class="form-control" type="password" name="password2" required="" id="id_password2"></p>
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <p><input class="btn btn-primary" type="submit" value="Sign Up"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
